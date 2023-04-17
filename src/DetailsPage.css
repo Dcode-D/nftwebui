@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.DetailPage{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+.token_container{
+    height:10%;
+    max-height: 10%;
+    overflow: auto;
+}
