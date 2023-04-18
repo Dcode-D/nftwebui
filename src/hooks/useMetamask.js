@@ -128,11 +128,72 @@ export const useMetamask = () => {
             await contract.methods.approve(FractionalizeContract._address,tokenId).send({from: accounts[0]})
             return true;
         }catch (e) {
+            console.log(e.message)
             return false;
         }
     }
 
+    const splitToken = async (tokenId, Arrtokenuri, Arrtokenshares) => {
+        try{
+            if(!Array.isArray(Arrtokenshares)||!Array.isArray(Arrtokenuri)) {
+                console.log('is not array')
+                return false;
+            }
+            if(Arrtokenshares.length===0)
+                await contract.methods.split(tokenId,Arrtokenuri).send({from: accounts[0]})
+            else
+                await contract.methods.splitWithShares(tokenId,Arrtokenuri,Arrtokenshares).send({from: accounts[0]})
+            return true;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
 
-    return { web3, accounts, error, sendTransaction, mintToken, getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,mintWithAttributes, sendToken, approveTokenToFractionalize}
+    const mergeToken = async (tokenIds) => {
+        try{
+            if(!Array.isArray(tokenIds))
+                return false;
+            await contract.methods.merge(tokenIds).send({from: accounts[0]})
+            return true;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getParent = async (tokenId) => {
+        try{
+            const parent = await contract.methods.getParent(tokenId).call()
+            return parent;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getCurrentTotalShares = async (tokenId) => {
+        try{
+            const shares = await contract.methods.getCurrentTotalShares(tokenId).call()
+            return shares;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getSharesValue = async (tokenId) => {
+        try{
+            const shares = await contract.methods.getSharesOfChild(tokenId).call()
+            return shares;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    return { web3, accounts, error, sendTransaction, mintToken, getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,mintWithAttributes, sendToken, approveTokenToFractionalize,
+        splitToken,mergeToken, getParent, getCurrentTotalShares, getSharesValue
+    }
 };
 export default useMetamask;
