@@ -76,6 +76,11 @@ const Tag = ({ tokenid }) => {
                     <div className="w-100" style={{height:'10px'}}></div>
                     <button className='btn btn-primary'
                             onClick={()=>{navigate(`/split/${tokenid}`)}}>Split</button>
+                    <button className='ms-1 btn btn-primary' onClick={()=>navigate(`/merge/${tokenid}`)}>merge</button>
+                    <div className='w-100'></div>
+                    <button className='mt-1 btn btn-primary' onClick={()=>navigate(`/splattributes/${tokenid}`)}>Split attributes</button>
+                    <div className='w-100'></div>
+                    <button className='mt-1 btn btn-primary' onClick={()=>navigate(`/mergeattributes/${tokenid}`)}>Merge attributes</button>
                 </div>
             </div>
         </div>

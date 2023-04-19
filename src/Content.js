@@ -5,6 +5,9 @@ import Details from './DetailsPage'
 import Transfer from './TransferPage'
 import Send from './sendingPage'
 import SplitPage from "./SplitPage";
+import MergePage from "./MergePage";
+import SplitAttributes from "./SplitAttributesPage";
+import MergeAttrPage from "./MergeAttributes";
 import {useContext} from "react";
 import DataContext from "./context/DataContext";
 
@@ -21,6 +24,9 @@ const AppContent = ()=>{
                         <Route path='/transfer' element={<Transfer/>}></Route>
                         <Route path='/send/:id' element={<Send></Send>}></Route>
                         <Route path='/split/:id' element={<SplitPage/>}></Route>
+                        <Route path='/merge/:id' element={<MergePage/>}></Route>
+                        <Route path='/splattributes/:id' element={<SplitAttributes/>}></Route>
+                        <Route path='/mergeattributes/:id' element={<MergeAttrPage/>}></Route>
                     </Routes>
                 }
             </main>

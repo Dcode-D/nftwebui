@@ -192,8 +192,67 @@ export const useMetamask = () => {
         }
     }
 
+    const getAllDescendants = async (tokenId) => {
+        try{
+            const descendants = await contract.methods.getAllDescendants(tokenId).call()
+            return descendants;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const checkOwnerOf = async (tokenId) => {
+        try{
+            const owner = await contract.methods.ownerOf(tokenId).call()
+            return owner === accounts[0];
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const separateAttributes = async (tokenId) => {
+        try{
+            await contract.methods.separate(tokenId).send({from: accounts[0]})
+            return true;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+    const mergeAttributes = async (tokenIds) => {
+        try{
+            await contract.methods.combine(tokenIds).send({from: accounts[0]})
+            return true;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+    const getOriginalToken = async (tokenId) => {
+        try{
+            const original = await contract.methods.getOriginal(tokenId).call()
+            return original;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getParts = async (tokenId) => {
+        try{
+            const parts = await contract.methods.getParts(tokenId).call()
+            return parts;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
     return { web3, accounts, error, sendTransaction, mintToken, getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,mintWithAttributes, sendToken, approveTokenToFractionalize,
-        splitToken,mergeToken, getParent, getCurrentTotalShares, getSharesValue
+        splitToken,mergeToken, getParent, getCurrentTotalShares, getSharesValue, getAllDescendants, checkOwnerOf,
+        separateAttributes, mergeAttributes, getOriginalToken, getParts
     }
 };
 export default useMetamask;
