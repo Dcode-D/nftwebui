@@ -250,9 +250,19 @@ export const useMetamask = () => {
         }
     }
 
+    const fractionalizeToken = async (name, symbol, id, supply) => {
+        try{
+            await FractionalizeContract.methods.createFraction(name,symbol,id,supply,accounts[0]).send({from: accounts[0]})
+            return true;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
     return { web3, accounts, error, sendTransaction, mintToken, getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,mintWithAttributes, sendToken, approveTokenToFractionalize,
         splitToken,mergeToken, getParent, getCurrentTotalShares, getSharesValue, getAllDescendants, checkOwnerOf,
-        separateAttributes, mergeAttributes, getOriginalToken, getParts
+        separateAttributes, mergeAttributes, getOriginalToken, getParts, fractionalizeToken
     }
 };
 export default useMetamask;

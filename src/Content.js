@@ -8,6 +8,7 @@ import SplitPage from "./SplitPage";
 import MergePage from "./MergePage";
 import SplitAttributes from "./SplitAttributesPage";
 import MergeAttrPage from "./MergeAttributes";
+import FractionalizePage from "./FractionalizePage";
 import {useContext} from "react";
 import DataContext from "./context/DataContext";
 
@@ -27,6 +28,7 @@ const AppContent = ()=>{
                         <Route path='/merge/:id' element={<MergePage/>}></Route>
                         <Route path='/splattributes/:id' element={<SplitAttributes/>}></Route>
                         <Route path='/mergeattributes/:id' element={<MergeAttrPage/>}></Route>
+                        <Route path='/fractionalize/:id' element={<FractionalizePage/>}></Route>
                     </Routes>
                 }
             </main>

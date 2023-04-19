@@ -81,6 +81,8 @@ const Tag = ({ tokenid }) => {
                     <button className='mt-1 btn btn-primary' onClick={()=>navigate(`/splattributes/${tokenid}`)}>Split attributes</button>
                     <div className='w-100'></div>
                     <button className='mt-1 btn btn-primary' onClick={()=>navigate(`/mergeattributes/${tokenid}`)}>Merge attributes</button>
+                    <div className='w-100'></div>
+                    <button className='mt-1 btn btn-primary' onClick={()=>navigate(`/fractionalize/${tokenid}`)}>Fractionalize</button>
                 </div>
             </div>
         </div>
