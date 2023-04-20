@@ -36,8 +36,8 @@ const FractionalizePage = () => {
 
     const handleFractionalize = async() => {
         const result = await fractionalizeToken("FractionalizedToken","FToken",id,supply);
-        if(result) alert("Token sent successfully!");
-        else alert("Token sending failed!");
+        if(result) alert("Token fractionalized successfully!");
+        else alert("Token fractionalization failed!");
         navigate("/")
     };
 
@@ -63,8 +63,8 @@ const FractionalizePage = () => {
             { approved?
                 <div className="mt-5">
                     <div className="mb-3">
-                        <label htmlFor="recipient" className="form-label">Recipient Address</label>
-                        <input type="text" className="form-control" id="recipient" value={supply}
+                        <label htmlFor="recipient" className="form-label">Total supply</label>
+                        <input type="number" className="form-control" id="recipient" value={supply}
                                onChange={handleInput}/>
                     </div>
                     <button className="btn btn-primary" onClick={handleFractionalize}>Fractionalize</button>

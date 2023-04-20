@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import getContract from "../Utils/getContract";
-import {getFractionalizeContract} from "../Utils/getContract";
+import {getFractionalizeContract, getSharesContract} from "../Utils/getContract";
 
 export const useMetamask = () => {
     const [web3, setWeb3] = useState(null);
@@ -260,9 +260,74 @@ export const useMetamask = () => {
         }
     }
 
+    const getAssociatedFractions = async () => {
+        try{
+            const associated = await FractionalizeContract.methods.getUserFractions(accounts[0]).call()
+            return associated;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getTotalSupplyOfShare = async (shareAddress) => {
+        try{
+            const shareContract = getSharesContract(web3, shareAddress)
+            const totalSupply = await shareContract.methods.totalSupply().call()
+            return totalSupply;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getSharesBalance = async (shareAddress) => {
+        try{
+            const shareContract = getSharesContract(web3, shareAddress)
+            const balance = await shareContract.methods.balanceOf(accounts[0]).call()
+            return balance;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const sendShare = async (shareAddress, toAddress, amount) => {
+        try{
+            const shareContract = getSharesContract(web3, shareAddress)
+            await shareContract.methods.transfer(toAddress, amount).send({from: accounts[0]})
+            return true;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
+    const getFractionedId = async (shareAddress) => {
+        try{
+            const shareContract = getSharesContract(web3, shareAddress)
+            const id = await shareContract.methods.getnftId().call()
+            return id;
+        }catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+    const retrieveFractionedToken = async (shareAddress) => {
+        try{
+            await FractionalizeContract.methods.withdrawNft(shareAddress).send({from: accounts[0]})
+            return true;
+        }
+        catch (e){
+            console.log(e.message)
+            return false;
+        }
+    }
+
     return { web3, accounts, error, sendTransaction, mintToken, getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,mintWithAttributes, sendToken, approveTokenToFractionalize,
         splitToken,mergeToken, getParent, getCurrentTotalShares, getSharesValue, getAllDescendants, checkOwnerOf,
-        separateAttributes, mergeAttributes, getOriginalToken, getParts, fractionalizeToken
+        separateAttributes, mergeAttributes, getOriginalToken, getParts, fractionalizeToken, getAssociatedFractions,
+        getTotalSupplyOfShare, getSharesBalance, sendShare, getFractionedId, retrieveFractionedToken
     }
 };
 export default useMetamask;

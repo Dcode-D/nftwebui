@@ -9,12 +9,14 @@ export const DataProvider = ({children})=>{
     const { web3, accounts, error, sendTransaction, mintToken,getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,
         mintWithAttributes, sendToken, approveTokenToFractionalize, splitToken, mergeToken, getParent,
         getCurrentTotalShares, getSharesValue, getAllDescendants, checkOwnerOf,
-        getParts, getOriginalToken, mergeAttributes, separateAttributes, fractionalizeToken} = useMetamask();
+        getParts, getOriginalToken, mergeAttributes, separateAttributes, fractionalizeToken, getAssociatedFractions
+        ,getSharesBalance, getTotalSupplyOfShare, getFractionedId, retrieveFractionedToken,sendShare} = useMetamask();
     return (
     <DataContext.Provider value={{width,accounts,mintToken,getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,
         mintWithAttributes, sendToken, approveTokenToFractionalize, splitToken, mergeToken, getParent,
         getCurrentTotalShares, getSharesValue, getAllDescendants,checkOwnerOf, getParts, getOriginalToken, mergeAttributes, separateAttributes,
-        fractionalizeToken}}>
+        fractionalizeToken, getAssociatedFractions, getSharesBalance, getTotalSupplyOfShare, getFractionedId,
+        retrieveFractionedToken,sendShare}}>
         {children}
     </DataContext.Provider>
     )

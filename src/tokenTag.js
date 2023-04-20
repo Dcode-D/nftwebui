@@ -5,9 +5,6 @@ import {useNavigate} from "react-router-dom";
 
 const {useEffect, useState,useContext} = React;
 
-
-
-
 const Tag = ({ tokenid }) => {
     const [uri, setUri] = useState('');
     const [attributes, setAttributes] = useState([]);

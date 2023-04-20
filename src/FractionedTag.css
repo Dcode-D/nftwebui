@@ -1,0 +1,27 @@
+.token-tag {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.token-tag span {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.token-id {
+    margin-bottom: 0.5rem;
+}
+
+.total-supply {
+    margin-bottom: 0.5rem;
+}
+
+.balance {
+    margin-bottom: 1rem;
+}
+
+.btn {
+    margin-right: 0.5rem;
+}
