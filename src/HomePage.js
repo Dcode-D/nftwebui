@@ -73,6 +73,7 @@ const HomePage = ()=>{
                         alert("Please enter tokenURI");
                     }
                 }}
+                disabled={accounts.length === 0||!tokenURI}
             >
                 Mint token
             </button>

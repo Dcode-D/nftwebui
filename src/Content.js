@@ -11,6 +11,7 @@ import MergeAttrPage from "./MergeAttributes";
 import FractionalizePage from "./FractionalizePage";
 import SendFractionPage from "./SendFractionPage";
 import {useContext} from "react";
+import PinFileToIPFS from "./PinFileToIPFS";
 import DataContext from "./context/DataContext";
 
 
@@ -23,6 +24,7 @@ const AppContent = ()=>{
                     <Routes>
                         <Route path='/' element={<Home/>}></Route>
                         <Route path='/details' element={<Details/>}></Route>
+                        <Route path='/pin' element={<PinFileToIPFS/>}></Route>
                         <Route path='/fraction' element={<FractionedPage/>}></Route>
                         <Route path='/send/:id' element={<Send></Send>}></Route>
                         <Route path='/split/:id' element={<SplitPage/>}></Route>

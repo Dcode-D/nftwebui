@@ -2,9 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import web3 from 'web3';
 import DataContext from './context/DataContext';
-import './tokenTag.css'
-
-import './FractionedTag.css';
 
 const SendFractionPage = () => {
     const {address} = useParams();

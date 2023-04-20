@@ -12,6 +12,7 @@ const NavBar = ()=>{
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/details">Details</Link></li>
                     <li><Link to="/fraction">Fractioned</Link></li>
+                    <li><Link to="/pin">IPFS</Link></li>
                 </ul>
             }
         </nav>
