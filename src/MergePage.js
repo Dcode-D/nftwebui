@@ -36,7 +36,7 @@ const MergePage = () => {
             else {
                 const descendants = await getAllDescendants(parent);
                 for(let i=0;i<descendants.length;i++){
-                    if(!checkOwnerOf(descendants[i])){
+                    if(!await checkOwnerOf(descendants[i])){
                         setCanBeMerged(false);
                         setIsLoadingMerge(false);
                         return;
@@ -62,7 +62,7 @@ const MergePage = () => {
 
     return (
         <div className="container my-5">
-            <h2>Send Token #{id}</h2>
+            <h2>Merge Token #{id}</h2>
             <div className="tag container d-flex justify-content-center py-3">
                 <div className="row align-items-center">
                     <div className="col-12 col-sm-5 col-md-3">
@@ -73,7 +73,7 @@ const MergePage = () => {
                         <h5 className="mb-3">Token ID: {id}</h5>
                         <ul className="list-unstyled">
                             {attributes.map((attribute, index) => (
-                                <li key={index}>{attribute}</li>
+                                <li key={index}>{attribute.replace('$',': ')}</li>
                             ))}
                         </ul>
                     </div>

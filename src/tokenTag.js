@@ -9,6 +9,7 @@ const Tag = ({ tokenid }) => {
     const [uri, setUri] = useState('');
     const [attributes, setAttributes] = useState([]);
     const [loadingshares, setLoadingShares] = useState(true);
+    const [parentId,setParentId] = useState(0);
     const [sharesStatus, setSharesStatus] = useState('');
     const {getTokenURI,getAttributes, getParent, getSharesValue, getCurrentTotalShares} = useContext(DataContext);
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Tag = ({ tokenid }) => {
             setUri(tmptd);
         }
         const getattributes = async () => {
-            const tmptd = await getAttributes(tokenid);
+            let tmptd = await getAttributes(tokenid);
             setAttributes(tmptd);
         }
         const checkIfOriginal = async () => {
@@ -41,6 +42,7 @@ const Tag = ({ tokenid }) => {
                     const totalShares = await getCurrentTotalShares(parent);
                     percent===-1?percent= shares/totalShares: percent /=  totalShares;
                 }
+                setParentId(parent)
             }
         }
         geturi();
@@ -50,7 +52,7 @@ const Tag = ({ tokenid }) => {
     return (
         <div className="tag position-relative container d-flex justify-content-center py-3" >
             <p className="position-absolute top-0 end-0">{
-                loadingshares ? 'loading...' : sharesStatus
+                loadingshares ? 'loading...' : parentId!==0 ? (sharesStatus*100).toFixed(2) +'% of '+parentId : sharesStatus
             }</p>
             <div className="row align-items-center">
                 <div className="col-12 col-sm-5 col-md-3">
@@ -61,7 +63,7 @@ const Tag = ({ tokenid }) => {
                     <h5 className="mb-3">Token ID: {tokenid}</h5>
                     <ul className="list-unstyled">
                         {attributes.map((attribute, index) => (
-                            <li key={index}>{attribute}</li>
+                            <li key={index}>{attribute.replace('$',': ')}</li>
                         ))}
                     </ul>
                 </div>

@@ -67,6 +67,9 @@ const FractionedTag = ({ address }) => {
 
     return (
         <div className="token-tag">
+            <div className="Contract-address">
+                <span>Contract address:</span> {address}
+            </div>
             <div className="token-id">
                 <span>Token ID:</span> {tokenID}
             </div>

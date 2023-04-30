@@ -25,7 +25,7 @@ const DetailsPage = ()=>{
         <div className="DetailPage">
             <h1>Detail Page</h1>
             <h2>hello:{accounts[0]}</h2>
-            <h2>Next ID: {nextId}</h2>
+            {/*<h2>Next ID: {nextId}</h2>*/}
             <div className="token_container">
                 {tokens!==undefined && tokens.length>0?tokens.map((token)=>{
                     return <TokenTag tokenid={token}/>

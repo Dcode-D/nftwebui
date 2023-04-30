@@ -45,7 +45,7 @@ const SplitAttributes = () => {
                         <h5 className="mb-3">Token ID: {id}</h5>
                         <ul className="list-unstyled">
                             {attributes.map((attribute, index) => (
-                                <li key={index}>{attribute}</li>
+                                <li key={index}>{attribute.replace('$',': ')}</li>
                             ))}
                         </ul>
                     </div>

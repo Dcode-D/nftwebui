@@ -140,7 +140,7 @@ export const useMetamask = () => {
                 return false;
             }
             if(Arrtokenshares.length===0)
-                await contract.methods.split(tokenId,Arrtokenuri).send({from: accounts[0]})
+                return false;
             else
                 await contract.methods.splitWithShares(tokenId,Arrtokenuri,Arrtokenshares).send({from: accounts[0]})
             return true;
