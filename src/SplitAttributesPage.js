@@ -52,7 +52,7 @@ const SplitAttributes = () => {
                 </div>
             </div>
             <button className='btn btn-primary' onClick={
-                attributes!==undefined && attributes.length>1 ? handleSplit : null
+                attributes!==undefined && attributes.length>1 ? handleSplit : ()=>{alert("Not enough attributes to split!");}
             }>Split token</button>
         </div>
     );

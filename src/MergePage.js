@@ -42,7 +42,11 @@ const MergePage = () => {
                         return;
                     }
                 }
-                setMergeList(descendants);
+                let decensdantsforsort = [];
+                descendants.map(item=>decensdantsforsort.push(parseInt(item)));
+                decensdantsforsort = decensdantsforsort.sort();
+                console.log(decensdantsforsort);
+                setMergeList(decensdantsforsort);
                 setIsLoadingMerge(false);
                 setCanBeMerged(true);
             }
@@ -83,7 +87,7 @@ const MergePage = () => {
                 <p>{isLoadingMerge?"Loading...":"IDs to be merged:"+mergeList.map(item=>item.toString()+' ')}</p>
                 <div className="mb-3">
                 </div>
-                <button className="btn btn-primary" style={canBeMerged?{backgroundColor:"blue"}:{backgroundColor:"gray"}} onClick={
+                <button className="btn btn-primary" disabled={!canBeMerged} onClick={
                     canBeMerged?handleMerge:()=>{}
                 }>merge</button>
             </div>

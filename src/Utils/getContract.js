@@ -3,8 +3,8 @@ const FractionalizeContract = require("../contracts/FractionalizeNFT.json");
 const sharesContract = require("../contracts/FractionToken.json");
 const abi = Lcontract.abi;
 const fractionalizeAbi = FractionalizeContract.abi;
-const address = "0x14A4E1f7E6E30209dAB68E70435fE8FDA4B43b6b"
-const fractionalizeAddress = "0x72FB1b8934EbB28bB4403B9141Ed60086c4cE21d"
+const address = "0x0E46befB7242aBADb99153dc1920e858BD326D85"
+const fractionalizeAddress = "0x5C4E554CFaBa0e97c2F23a62266Dd886e1d5b514"
 
 const getContract = (web3) => {
     return  new web3.eth.Contract(abi, address);
