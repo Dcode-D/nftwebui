@@ -53,12 +53,12 @@ const SendFractionPage = () => {
                 const result = await sendShare(address,receiver, amount);
                 if (result) {
                     alert('Token sent successfully');
-                    navigate('/details');
+                    navigate('/fraction');
                 } else {
                     console.log('Error sending token');
                 }
             } else {
-                alert('Please fill in all fields');
+                alert('Invalid input');
             }
         } catch (error) {
             console.error('Error sending token:', error);
@@ -76,13 +76,13 @@ const SendFractionPage = () => {
             <div className="balance">
                 <span>Balance:</span> {balance || '-'}
             </div>
-            <div>
+            <div style={{width:"100%"}}>
                 <label>Amount:</label>
-                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                <input type="number"  value={amount} onChange={(e) => setAmount(e.target.value)} />
             </div>
-            <div>
+            <div style={{width:"100%"}}>
                 <label>Receiver:</label>
-                <input type="text" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
+                <input type="text"  value={receiver} onChange={(e) => setReceiver(e.target.value)} />
             </div>
             <button className='btn btn-primary' onClick={sendToken}>
                 Send

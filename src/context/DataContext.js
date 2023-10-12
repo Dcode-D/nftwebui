@@ -6,17 +6,11 @@ const DataContext = createContext({});
 
 export const DataProvider = ({children})=>{
     const {width} = useWindowSize();
-    const { web3, accounts, error, sendTransaction, mintToken,getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,
-        mintWithAttributes, sendToken, approveTokenToFractionalize, splitToken, mergeToken, getParent,
-        getCurrentTotalShares, getSharesValue, getAllDescendants, checkOwnerOf,
-        getParts, getOriginalToken, mergeAttributes, separateAttributes, fractionalizeToken, getAssociatedFractions
-        ,getSharesBalance, getTotalSupplyOfShare, getFractionedId, retrieveFractionedToken,sendShare} = useMetamask();
+    const { web3, accounts, error, mintToken,getTokensOfOwner,getMetamask,getTokenURI,
+        checkOwnerOf, sendToken} = useMetamask();
     return (
-    <DataContext.Provider value={{width,accounts,mintToken,getNextId,getTokensOfOwner,getMetamask,getTokenURI,getAttributes,
-        mintWithAttributes, sendToken, approveTokenToFractionalize, splitToken, mergeToken, getParent,
-        getCurrentTotalShares, getSharesValue, getAllDescendants,checkOwnerOf, getParts, getOriginalToken, mergeAttributes, separateAttributes,
-        fractionalizeToken, getAssociatedFractions, getSharesBalance, getTotalSupplyOfShare, getFractionedId,
-        retrieveFractionedToken,sendShare}}>
+    <DataContext.Provider value={{width,accounts,mintToken,getTokensOfOwner,getMetamask,getTokenURI,
+        checkOwnerOf, sendToken }}>
         {children}
     </DataContext.Provider>
     )

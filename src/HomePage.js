@@ -43,10 +43,6 @@ const HomePage = ()=>{
                 />
             </div>
 
-            <div className="parent-container">
-                <AttributesForm onChildrenListUpdate={handleAttributesChange}/>
-            </div>
-
             <button
                 type="button"
                 className="btn btn-primary"

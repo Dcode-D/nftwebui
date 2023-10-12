@@ -5,20 +5,16 @@ import useWindowSize from "./hooks/useWindowSize";
 import './DetailsPage.css'
 
 const DetailsPage = ()=>{
-    const {accounts,getNextId,getTokensOfOwner} = useContext(DataContext);
-    const[nextId,setNextId] = useState(0);
+    const {accounts,getTokensOfOwner} = useContext(DataContext);
     const [tokens,setTokens] = useState([]);
     const {height,width} = useWindowSize();
     useEffect(()=>{
-        const getnext = async ()=>{
-            const tmptd = await getNextId();
-            setNextId(tmptd);
-        }
+
         const gettokens = async ()=>{
             const tmptd = await getTokensOfOwner();
             setTokens(tmptd);
         }
-        getnext();
+
         gettokens();
     },[])
     return (

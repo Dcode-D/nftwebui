@@ -25,14 +25,7 @@ const AppContent = ()=>{
                         <Route path='/' element={<Home/>}></Route>
                         <Route path='/details' element={<Details/>}></Route>
                         <Route path='/pin' element={<PinFileToIPFS/>}></Route>
-                        <Route path='/fraction' element={<FractionedPage/>}></Route>
                         <Route path='/send/:id' element={<Send></Send>}></Route>
-                        <Route path='/split/:id' element={<SplitPage/>}></Route>
-                        <Route path='/merge/:id' element={<MergePage/>}></Route>
-                        <Route path='/splattributes/:id' element={<SplitAttributes/>}></Route>
-                        <Route path='/mergeattributes/:id' element={<MergeAttrPage/>}></Route>
-                        <Route path='/fractionalize/:id' element={<FractionalizePage/>}></Route>
-                        <Route path='/sendfraction/:address' element={<SendFractionPage/>}></Route>
                     </Routes>
                 }
             </main>
