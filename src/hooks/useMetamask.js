@@ -36,13 +36,14 @@ export const useMetamask = () => {
 
 
 
-    const mintToken = async (address,tokenURI) => {
+    const mintToken = async (address,tokenURI,amount) => {
         try {
-            const price = await contract.methods.getPrice().call()
-            await contract.methods.mint(address,tokenURI).send({from: accounts[0], value: price})
+            await contract.methods
+              .mint(address, tokenURI, amount)
+              .send({ from: accounts[0] });
             return true;
         } catch (err) {
-            console.log(err.message);
+            console.log(err.message)
             return false;
         }
     }
