@@ -89,11 +89,21 @@ export const useMetamask = () => {
         }
     }
 
+    const setPrice = async (price) => {
+        try{
+            await contract.methods.setPrice(web3.utils.toWei(price)).send({from: accounts[0]})
+            return true;
+        }catch (e) {
+            console.log(e.message)
+            return false;
+        }
+    }
 
 
 
 
-    return { web3, accounts, error, mintToken,getTokensOfOwner,getMetamask,getTokenURI, checkOwnerOf,sendToken
+
+    return { web3, accounts, error, mintToken,getTokensOfOwner,getMetamask,getTokenURI, checkOwnerOf,sendToken, setPrice
     }
 };
 export default useMetamask;

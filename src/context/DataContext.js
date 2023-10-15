@@ -7,10 +7,10 @@ const DataContext = createContext({});
 export const DataProvider = ({children})=>{
     const {width} = useWindowSize();
     const { web3, accounts, error, mintToken,getTokensOfOwner,getMetamask,getTokenURI,
-        checkOwnerOf, sendToken} = useMetamask();
+        checkOwnerOf, sendToken, setPrice} = useMetamask();
     return (
     <DataContext.Provider value={{width,accounts,mintToken,getTokensOfOwner,getMetamask,getTokenURI,
-        checkOwnerOf, sendToken }}>
+        checkOwnerOf, sendToken, setPrice }}>
         {children}
     </DataContext.Provider>
     )

@@ -6,13 +6,11 @@ import FractionedPage from './FractionedPage'
 import Send from './sendingPage'
 import SplitPage from "./SplitPage";
 import MergePage from "./MergePage";
-import SplitAttributes from "./SplitAttributesPage";
-import MergeAttrPage from "./MergeAttributes";
-import FractionalizePage from "./FractionalizePage";
-import SendFractionPage from "./SendFractionPage";
+import SplitAttributes from "./SplitAttributesPage"
 import {useContext} from "react";
 import PinFileToIPFS from "./PinFileToIPFS";
 import DataContext from "./context/DataContext";
+import ChangePricePage from "./ChangePricePage";
 
 
 const AppContent = ()=>{
@@ -26,6 +24,7 @@ const AppContent = ()=>{
                         <Route path='/details' element={<Details/>}></Route>
                         <Route path='/pin' element={<PinFileToIPFS/>}></Route>
                         <Route path='/send/:id' element={<Send></Send>}></Route>
+                        <Route path='/changePrice' element={<ChangePricePage/>}></Route>
                     </Routes>
                 }
             </main>
