@@ -38,9 +38,10 @@ export const useMetamask = () => {
 
     const mintToken = async (address,tokenURI,amount) => {
         try {
+            const price = await contract.methods.fee().call();
             await contract.methods
               .mint(address, tokenURI, amount)
-              .send({ from: accounts[0] });
+              .send({ from: accounts[0], value: price });
             return true;
         } catch (err) {
             console.log(err.message)
@@ -49,14 +50,15 @@ export const useMetamask = () => {
     }
 
 
-    const getTokensOfOwner = async () => {
-        try {
-            const tokens = await contract.methods.tokenOfOwner(accounts[0]).call()
-            return tokens;
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
+    const getTokenIds = async () => {
+      try {
+        const tokens = await contract.methods.getTokenIds().call();
+        console.log(tokens);
+        return tokens;
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
 
     const getTokenURI = async (tokenId) => {
         try {
@@ -68,9 +70,11 @@ export const useMetamask = () => {
     }
 
 
-    const sendToken = async (tokenId, toAddress) => {
+    const sendToken = async (tokenId, toAddress, amount) => {
         try {
-            await contract.methods.transferFrom(accounts[0], toAddress, tokenId).send({from: accounts[0]})
+            await contract.methods
+              .safeTransferFrom(accounts[0], toAddress, tokenId, amount)
+              .send({ from: accounts[0] });
             return true;
         } catch (err) {
             console.log(err.message);
@@ -80,19 +84,20 @@ export const useMetamask = () => {
 
 
 
-    const checkOwnerOf = async (tokenId) => {
+    const checkBalanceOf = async (tokenId) => {
         try{
-            const owner = await contract.methods.ownerOf(tokenId).call()
-            return owner === accounts[0];
+            const balance = await contract.methods.balanceOf(accounts[0],tokenId).call();
+            return balance;
         }catch (e) {
             console.log(e.message)
             return false;
         }
     }
 
-    const setPrice = async (price) => {
+    const setFee = async (price) => {
         try{
-            await contract.methods.setPrice(web3.utils.toWei(price)).send({from: accounts[0]})
+            console.log(price);
+            await contract.methods.setFee(web3.utils.toWei(price)).send({from: accounts[0]})
             return true;
         }catch (e) {
             console.log(e.message)
@@ -104,7 +109,17 @@ export const useMetamask = () => {
 
 
 
-    return { web3, accounts, error, mintToken,getTokensOfOwner,getMetamask,getTokenURI, checkOwnerOf,sendToken, setPrice
-    }
+    return {
+      web3,
+      accounts,
+      error,
+      mintToken,
+      getTokenIds,
+      getMetamask,
+      getTokenURI,
+      checkBalanceOf,
+      sendToken,
+      setFee,
+    };
 };
 export default useMetamask;

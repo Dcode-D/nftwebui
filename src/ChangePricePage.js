@@ -4,11 +4,11 @@ import DataContext from "./context/DataContext";
 
 const ChangePricePage = () => {
     const [price, setInputPrice] = useState(0);
-    const {setPrice} = useContext(DataContext);
+    const {setFee} = useContext(DataContext);
     const navigate = useNavigate();
 
     const handleSetPrice = async() => {
-        const result = await setPrice(price);
+        const result = await setFee(price);
         if(result) alert("Token price set successfully!");
         else alert("Token price change failed!");
         navigate("/")
