@@ -62,7 +62,8 @@ export const useMetamask = () => {
 
     const getTokenURI = async (tokenId) => {
         try {
-            const uri = await contract.methods.tokenURI(tokenId).call()
+            const uri = await contract.methods.uri(tokenId).call()
+            console.log(uri);
             return uri;
         } catch (err) {
             console.log(err.message);
@@ -73,7 +74,7 @@ export const useMetamask = () => {
     const sendToken = async (tokenId, toAddress, amount) => {
         try {
             await contract.methods
-              .safeTransferFrom(accounts[0], toAddress, tokenId, amount)
+              .safeTransferFrom(accounts[0], toAddress, tokenId, amount, 1)
               .send({ from: accounts[0] });
             return true;
         } catch (err) {
@@ -87,6 +88,7 @@ export const useMetamask = () => {
     const checkBalanceOf = async (tokenId) => {
         try{
             const balance = await contract.methods.balanceOf(accounts[0],tokenId).call();
+            console.log(balance)
             return balance;
         }catch (e) {
             console.log(e.message)
